@@ -1,0 +1,17 @@
+public/
+
+resources/
+hugo_stats.json
+
+.DS_Store
+*.swp
+*.swo
+*.bak
+*.tmp
+
+go.sum
+go.mod
+
+*.log
+
+.vscode/
