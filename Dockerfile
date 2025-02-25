@@ -1,7 +1,8 @@
-FROM alpine:latest AS build-stage
-RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community hugo
-RUN apk add git go
-WORKDIR /blog
-COPY . /blog
-EXPOSE 1313
-CMD ["hugo", "server", "--bind", "0.0.0.0", "--baseURL", "https://bezdar.eu/", "--disableFastRender"]
+FROM hugomods/hugo:exts as builder
+ARG HUGO_BASEURL=https://bezdar.eu/
+ENV HUGO_BASEURL=${HUGO_BASEURL}
+COPY . /src
+RUN hugo --minify --enableGitInfo
+
+FROM hugomods/hugo:nginx
+COPY --from=builder /src/public /site
