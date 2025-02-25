@@ -5,4 +5,5 @@ COPY . /src
 RUN hugo --minify
 
 FROM hugomods/hugo:nginx
+EXPOSE 80
 COPY --from=builder /src/public /site
