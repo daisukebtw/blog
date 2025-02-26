@@ -1,9 +1,12 @@
-FROM hugomods/hugo:exts as builder
-ARG HUGO_BASEURL=https://bezdar.eu/
-ENV HUGO_BASEURL=${HUGO_BASEURL}
-COPY . /src
+FROM alpine:latest AS build
+RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community hugo
+RUN apk add git go
+WORKDIR /blog
+COPY . /blog
 RUN hugo --minify
 
-FROM hugomods/hugo:nginx
+
+FROM nginx:1.27.4-alpine-slim
+COPY --from=build-stage /blog/public /usr/share/nginx/html
 EXPOSE 80
-COPY --from=builder /src/public /site
+CMD ["nginx", "-g", "daemon off;"]
