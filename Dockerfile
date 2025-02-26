@@ -1,8 +1,11 @@
 FROM alpine:latest AS build
 RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community hugo
-RUN apk add git go
+RUN apk add git
+RUN hugo new site blog --format yaml
 WORKDIR /blog
-COPY . /blog
+RUN git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
+COPY hugo.yaml /blog
+COPY content /blog/content
 RUN hugo --minify
 
 
