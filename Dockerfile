@@ -7,6 +7,6 @@ RUN hugo --minify
 
 
 FROM nginx:1.27.4-alpine-slim
-COPY --from=build-stage /blog/public /usr/share/nginx/html
+COPY --from=build /blog/public /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
