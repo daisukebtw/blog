@@ -14,12 +14,12 @@ cover:
 
 ⚠️ WARNING ⚠️
 
-- I am NOT Kubernetes expert
+- I am NOT **Kubernetes** expert
 -   This is solely for my own learning. If you get something useful out of my ramblings, that’s great, but it’s not my primary goal.
 
 ## Why Kubernetes?
 
-Because I am about to reach my goal of being a **DevOps Engineer**, and that role requires me to know **Kubernetes** at Advanced Level and there is no better way to learn it if not on practice that's why **Kubernetes
+Because I am about to reach my goal of being a **DevOps Engineer**, and that role requires me to know **Kubernetes** at Advanced Level and there is no better way to learn it if not on practice that's why **Kubernetes**
 
 ## Why Talos?
 
@@ -29,7 +29,7 @@ I had multiple options to choose from
 - **Kubeadm**
 - **Talos Linux**
 
-I have chosen Talos because it is lightweight, secure and is production grade OS.
+I have chosen **Talos Linux** because it is lightweight, secure and is production grade OS.
 
 # Install Talos Linux cluster
 
@@ -56,7 +56,7 @@ ansible-playbook -i path/to/inventory init.yml
 From the beginning plan was to create a cluster to learn on, and that is why I planned to set up next Stack.
 
 - **Grafana + Prometheus + Loki** -- Logging, Monitoring Stack
-- **ArgoCD** -- Automatic Deploy to Kubernetes cluster from **VCS (Version Control System)**
+- **ArgoCD** -- Automatic Deploy to **Kubernetes** cluster from **VCS (Version Control System)**
 - **Dynamic DNS** -- To Automatically track and change Public IP on **Cloudflare**
 - **Traefik + Cert-manager** -- Reverse Proxy
 - **Own Projects** -- [IPTY (Check Your Public IP)](https://github.com/daisukebtw/ipty), [Blog (Using HUGO)](https://github.com/daisukebtw/blog) etc.
@@ -128,14 +128,14 @@ Added **Prometheus** and **Loki** with its cluster names and port
 
 ## ArgoCD
 
-Installed ArgoCD HA using its [documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/)
+Installed **ArgoCD** HA using its [documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/)
 
 ```
 kubectl create namespace argocd
 kubectl apply -f https://github.com/argoproj/argo-cd/blob/master/manifests/ha/install.yaml --namespace argocd
 ```
 
-I used ArgoCD CLI to get password
+I used **ArgoCD CLI** to get password
 
 ```
 argocd admin initial-password -n argocd
@@ -149,7 +149,7 @@ I have moved **Dynamic DNS** container from **Docker** to **Kubernetes** by crea
 
 ## Traefik + Cert-manager
 
-I have deployed Traefik and Cert-manager using Helm
+I have deployed **Traefik** and **Cert-manager** using **Helm**
 
 ### Traefik
 
@@ -162,7 +162,7 @@ helm install traefik traefik/traefik \
   --create-namespace
 ```
 
-for Traefik I have used next values
+for **Traefik** I have used next values
 
 ```
 port:
