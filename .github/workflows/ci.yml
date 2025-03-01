@@ -60,23 +60,3 @@ jobs:
           tags: |
             daisukebtw/hugo-blog:${{ env.TAG }}
             daisukebtw/hugo-blog:latest
-        
-      - name: Checkout configuration repository
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ secrets.K8S_CONFIG_REPO }}
-          token: ${{ secrets.K8S_CONFIG_REPO_TOKEN }}
-          ref: main
-
-      - name: Update Kubernetes manifest
-        run: |
-          MANIFEST=prod/deployment.yaml
-          IMAGE_NAME=daisukebtw/hugo-blog
-          sed -i "s|image: .*|image: $IMAGE_NAME:$TAG|" $MANIFEST
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add $MANIFEST 
-          git commit -m "Update Docker image versions [skip ci]"
-      
-      - name: Push changes
-        run: git push
